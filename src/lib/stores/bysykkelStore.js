@@ -7,7 +7,7 @@ export const stasjoner = writable([]);
 export const stasjonerError = writable("");
 
 export async function fetchStasjoner() {
-    const stasjonerResponse = await fetch('https://gbfs.urbansharing.com/oslobysykkel.no/station_information.jsona', {
+    const stasjonerResponse = await fetch('https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json', {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
