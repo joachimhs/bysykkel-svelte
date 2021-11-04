@@ -131,5 +131,18 @@ body {
 @media  (max-width: 600px) {
     .bysykkel-stations {
         grid-template-columns: repeat(1, 1fr);
+        max-width: 80vw;
+    }
+
+    .bysykkel-station {
+        max-width: 80vw;
+    }
+
+    .bysykkel-station h1 {
+        max-width: 80vw;
+    }
+
+    .bysykkel-station h3 {
+        max-width: 80vw;
     }
 }
