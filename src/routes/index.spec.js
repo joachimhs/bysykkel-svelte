@@ -3,8 +3,9 @@
  */
 
 import '@testing-library/jest-dom';
-import {render, waitFor, fireEvent} from "@testing-library/svelte";
+import {render, screen, waitFor, fireEvent} from "@testing-library/svelte";
 import Index from "./index.svelte";
+import { tick } from 'svelte';
 
 jest.mock('$app/navigation.js', () => ({
     goto: jest.fn()
@@ -20,6 +21,18 @@ describe("Index Route", () => {
     test("skal være 2 stasjoner fra mock Fetch", async () => {
         const {getByText} = render(Index);
         await waitFor(() => expect(getByText("Viser 2 stasjoner av 2")).toBeInTheDocument());
+    });
+
+    test("skal filtrere på string", async () => {
+        const {component, getByText} = render(Index);
+
+        const input = screen.getByPlaceholderText('Søk etter bysykkel stasjon!');
+
+        await fireEvent.input(input, { target: { value: "hub" } });
+
+        await tick();
+
+        await waitFor(() => expect(getByText("Viser 1 stasjoner av 2")).toBeInTheDocument());
     });
 });
 
